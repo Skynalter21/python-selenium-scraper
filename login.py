@@ -1,7 +1,6 @@
 import os
 import logging
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -31,12 +30,12 @@ logging.basicConfig(
 )
 
 def login():
-    # Configuração do WebDriver
-    chrome_service = Service("chromedriver.exe")  # Verifique se o chromedriver.exe está no caminho correto
+    # Configuração do WebDriver com Selenium Manager
     chrome_options = webdriver.ChromeOptions()
     chrome_options.binary_location = "C:\\Users\\muril\\Documents\\chrome-win64\\chrome.exe"
     
-    driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+    # Inicializa o driver sem o caminho manual do chromedriver
+    driver = webdriver.Chrome(options=chrome_options)
     driver.maximize_window()
     wait = WebDriverWait(driver, 10)
     login_url = "http://quotes.toscrape.com/login"
